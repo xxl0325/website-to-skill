@@ -1,0 +1,82 @@
+---
+name: {{ name }}
+description: Generate frontend UI code inspired by {{ brand_name }} design system
+metadata:
+  version: "1.0.0"
+---
+
+# {{ brand_name }} Design Skill
+
+Use this skill to generate frontend UI components that match the {{ brand_name }} design aesthetic.
+
+## Visual Identity
+
+{{ visual_identity }}
+
+## Color System
+
+{% for name, value in colors.items() %}
+- **{{ name }}**: `{{ value }}`
+{% endfor %}
+
+## Typography
+
+{% if fonts.family %}
+**Font Family**: {{ fonts.family }}
+{% endif %}
+
+{% if fonts.sizes %}
+**Sizes**: {{ fonts.sizes | join(', ') }}
+{% endif %}
+
+{% if fonts.weights %}
+**Weights**: {{ fonts.weights | join(', ') }}
+{% endif %}
+
+## Components
+
+{% if buttons %}
+### Buttons
+{% for key, value in buttons.items() %}
+- **{{ key }}**: {{ value }}
+{% endfor %}
+{% endif %}
+
+## Layout
+
+{% if spacing %}
+### Spacing
+{% for key, value in spacing.items() %}
+- **{{ key }}**: {{ value | join(', ') }}
+{% endfor %}
+{% endif %}
+
+{% if border_radius %}
+### Border Radius
+{% for key, value in border_radius.items() %}
+- **{{ key }}**: {{ value }}
+{% endfor %}
+{% endif %}
+
+{% if shadows %}
+### Shadows
+{% for shadow in shadows %}
+- {{ shadow }}
+{% endfor %}
+{% endif %}
+
+## Usage Examples
+
+```html
+<!-- Example component using {{ brand_name }} styles -->
+<button class="primary-btn">Action</button>
+```
+
+## Gotchas
+
+| What happened | Rule |
+|---------------|------|
+| Used generic shadows | {{ brand_name }} uses {{ shadows | length }} shadow(s) - reference exact values |
+| Wrong button radius | Border radius is {{ border_radius.get('default', '0') }} - not rounded pill |
+| Generic font stack | Use {{ fonts.family | default('system font') }} - matches brand typography |
+```

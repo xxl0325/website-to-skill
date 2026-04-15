@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tesla Design — Skill Demo</title>
+  <style>
+    /* SKILL约束：系统字体、0 阴影、圆角 0 */
+    :root {
+      --bg: #0d0d0d;
+      --surface: #171a20;
+      --text: #f4f4f4;
+      --text-muted: #a2a3a5;
+      --accent: #ffffff;
+      --line: #393c41;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      min-height: 56px;
+      background: rgba(13, 13, 13, 0.85);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav__brand {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav__links a {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .nav__links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 6rem 1.5rem 4rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 45%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero__eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero__title {
+      margin: 0 0 0.5rem;
+      font-size: clamp(2.25rem, 6vw, 3.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .hero__subtitle {
+      margin: 0 0 2rem;
+      max-width: 32rem;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Components — primary-btn 与 SKILL 示例一致 */
+    .primary-btn,
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 12rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      box-shadow: none;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .primary-btn:hover {
+      background: #e8e8e8;
+    }
+
+    .secondary-btn {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--text);
+    }
+
+    .secondary-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .section {
+      padding: 4rem 1.5rem;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .section__title {
+      margin: 0 0 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .section__lead {
+      margin: 0 0 2.5rem;
+      color: var(--text-muted);
+      max-width: 36rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    @media (min-width: 640px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--surface);
+      padding: 1.75rem 1.5rem;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .card__label {
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card__title {
+      margin: 0 0 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .card__text {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+    }
+
+    .footer {
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 639px) {
+      .nav__links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <span class="nav__brand">Tesla</span>
+    <nav aria-label="主导航">
+      <ul class="nav__links">
+        <li><a href="#models">车型</a></li>
+        <li><a href="#energy">能源</a></li>
+        <li><a href="#charging">充电</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <p class="hero__eyebrow">Design system demo</p>
+      <h1 class="hero__title">极简、现代、无多余装饰</h1>
+      <p class="hero__subtitle">
+        本页遵循 SKILL 约定：系统字体、直角按钮、不使用阴影，整体贴近 Tesla 式干净界面。
+      </p>
+      <div class="hero__actions">
+        <button type="button" class="primary-btn">Action</button>
+        <button type="button" class="secondary-btn">了解更多</button>
+      </div>
+    </section>
+
+    <section class="section" id="models">
+      <h2 class="section__title">设计令牌（来自 Gotchas）</h2>
+      <p class="section__lead">
+        阴影数量0；按钮圆角 0；字体使用系统栈，避免「通用圆角 + 重阴影」的模板感。
+      </p>
+      <div class="grid">
+        <article class="card">
+          <p class="card__label">Shadow</p>
+          <h3 class="card__title">无投影</h3>
+          <p class="card__text">卡片与按钮均不使用 box-shadow，层次靠色块与 1px 分割线区分。</p>
+        </article>
+        <article class="card">
+          <p class="card__label">Radius</p>
+          <h3 class="card__title">直角</h3>
+          <p class="card__text">border-radius: 0，与 SKILL 中「非 pill」一致。</p>
+        </article>
+        <article class="card">
+          <p class="card__label">Type</p>
+          <h3 class="card__title">系统字体</h3>
+          <p class="card__text">-apple-system 等栈，贴近品牌排版习惯且无需外链字体。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="energy">
+      <h2 class="section__title">示例代码</h2>
+      <p class="section__lead">与 SKILL.md 中 Usage Examples 一致的主按钮类名。</p>
+      <p><button type="button" class="primary-btn">Action</button></p>
+    </section>
+  </main>
+
+  <footer class="footer" id="charging">
+    <p>根据 <code>website-to-skill/test-output/tesla/SKILL.md</code> 生成的静态演示页。</p>
+  </footer>
+</body>
+</html>

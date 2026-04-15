@@ -1,0 +1,69 @@
+# {{ brand_name }} Design System
+
+## Color Palette
+
+{% for name, value in colors.items() %}
+### {{ name | capitalize }}
+- Hex: `{{ value }}`
+- Usage: Primary brand color
+{% endfor %}
+
+## Typography
+
+**Font Family**: {{ fonts.family | default('System fonts') }}
+
+{% if fonts.sizes %}
+### Font Sizes
+{% for size in fonts.sizes %}
+- {{ size }}
+{% endfor %}
+{% endif %}
+
+{% if fonts.weights %}
+### Font Weights
+{% for weight in fonts.weights %}
+- {{ weight }}
+{% endfor %}
+{% endif %}
+
+## Components
+
+### Buttons
+
+{% if buttons.background %}
+**Primary Button**
+- Background: `{{ buttons.background }}`
+- Border radius: {{ border_radius.get('default', '4px') }}
+{% endif %}
+
+## Layout
+
+### Spacing
+{% if spacing.padding %}
+**Padding**: {{ spacing.padding | join(', ') }}
+{% endif %}
+
+{% if spacing.margin %}
+**Margin**: {{ spacing.margin | join(', ') }}
+{% endif %}
+
+### Border Radius
+{% if border_radius.default %}
+- Default: {{ border_radius.default }}
+{% endif %}
+
+{% if shadows %}
+### Shadows
+{% for shadow in shadows %}
+- {{ shadow }}
+{% endfor %}
+{% endif %}
+
+## Usage Guide
+
+To generate {{ brand_name }}-style components:
+
+1. Reference the color palette above
+2. Use the specified typography
+3. Apply component styles (buttons, cards, etc.)
+4. Follow spacing and layout principles
