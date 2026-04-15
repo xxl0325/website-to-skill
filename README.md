@@ -63,7 +63,6 @@ output/tesla/
 
 ## DESIGN.md 示例结构
 
-参考 [`/Users/xielonglong/Desktop/code/self-skill/design/awesome-design-md/design-md/tesla/DESIGN.md`](/Users/xielonglong/Desktop/code/self-skill/design/awesome-design-md/design-md/tesla/DESIGN.md)
 
 生成的文档包含：
 
@@ -97,14 +96,6 @@ python generate_skill.py https://www.tesla.com --name tesla --output ./output
 # 指定模型
 python generate_skill.py ./site.html --name mysite --model claude-opus-4-0
 ```
-
-## 与参考文档对比
-
-生成的 DESIGN.md 格式参考了 `awesome-design-md` 项目中的 Tesla 设计文档：
-- 同样的 9 个章节结构
-- 同样的详细描述风格
-- 同样的表格和列表格式
-- 同样的 Agent Prompt Guide
 
 ## 常见问题
 
